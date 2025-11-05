@@ -1,1 +1,36 @@
-<p>admin-panel works!</p>
+<div class="admin-container">
+  <h2>Painel Administrativo</h2>
+
+  <form (ngSubmit)="salvarProduto()" class="form-produto">
+    <input type="text" placeholder="Nome do produto" [(ngModel)]="produtoSelecionado.nome" name="nome" required>
+    <input type="number" placeholder="Preço" [(ngModel)]="produtoSelecionado.preco" name="preco" required>
+    <input type="text" placeholder="Descrição" [(ngModel)]="produtoSelecionado.descricao" name="descricao" required>
+
+    <button type="submit">{{ editando ? 'Atualizar' : 'Adicionar' }}</button>
+    <button type="button" (click)="cancelarEdicao()" *ngIf="editando">Cancelar</button>
+  </form>
+
+  <table class="tabela-produtos">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Descrição</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let produto of produtos">
+        <td>{{ produto.id }}</td>
+        <td>{{ produto.nome }}</td>
+        <td>R$ {{ produto.preco }}</td>
+        <td>{{ produto.descricao }}</td>
+        <td>
+          <button class="editar" (click)="editarProduto(produto)">Editar</button>
+          <button class="excluir" (click)="deletarProduto(produto.id)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,12 @@
+<div class="lista-container">
+  <h3>Lista de Produtos</h3>
+
+  <div class="lista-produto" *ngFor="let produto of produtos">
+    <img *ngIf="produto.imagem" [src]="produto.imagem" alt="{{ produto.nome }}">
+    <div>
+      <h4>{{ produto.nome }}</h4>
+      <p>{{ produto.descricao }}</p>
+      <span>R$ {{ produto.preco }}</span>
+    </div>
+  </div>
+</div>

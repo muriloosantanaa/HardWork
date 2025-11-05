@@ -1,0 +1,12 @@
+<div class="form-container">
+  <h3>Cadastrar / Editar Produto</h3>
+
+  <form (ngSubmit)="salvarProduto()">
+    <input type="text" placeholder="Nome" [(ngModel)]="produto.nome" name="nome" required>
+    <input type="number" placeholder="Preço" [(ngModel)]="produto.preco" name="preco" required>
+    <input type="text" placeholder="Descrição" [(ngModel)]="produto.descricao" name="descricao" required>
+    <input type="text" placeholder="URL da Imagem (opcional)" [(ngModel)]="produto.imagem" name="imagem">
+
+    <button type="submit">Salvar</button>
+  </form>
+</div>
