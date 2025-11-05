@@ -6,54 +6,43 @@ import { Produto } from './produto.service';
   providedIn: 'root'
 })
 export class CartService {
-  // Array de produtos no carrinho
   private cartItems: Produto[] = [];
-
-  // Observable para componentes assinarem
+  
   private cartSubject = new BehaviorSubject<Produto[]>([]);
   cart$ = this.cartSubject.asObservable();
 
-  // Estado do modal do carrinho
   private modalOpenSubject = new BehaviorSubject<boolean>(false);
   modalOpen$ = this.modalOpenSubject.asObservable();
 
-  constructor() {}
-
-  // Adiciona um produto ao carrinho
+  // Adiciona produto ao carrinho
   adicionarProduto(produto: Produto) {
     this.cartItems.push(produto);
     this.cartSubject.next(this.cartItems);
+    this.abrirModal(); // abre automaticamente ao adicionar
   }
 
-  // Remove um produto do carrinho pelo ID
-  removerProduto(id: number) {
+  // Remove produto do carrinho pelo id
+  removerProduto(id?: number) {
+    if (!id) return;
     this.cartItems = this.cartItems.filter(p => p.id !== id);
     this.cartSubject.next(this.cartItems);
   }
 
-  // Limpa o carrinho
-  limparCarrinho() {
-    this.cartItems = [];
-    this.cartSubject.next(this.cartItems);
+  // Retorna valor total
+  totalValor(): number {
+    return this.cartItems.reduce((acc, p) => acc + p.preco, 0);
   }
 
-  // Abre o modal do carrinho
+  // Abre/fecha modal
   abrirModal() {
     this.modalOpenSubject.next(true);
   }
 
-  // Fecha o modal do carrinho
   fecharModal() {
     this.modalOpenSubject.next(false);
   }
 
-  // Retorna o total de produtos no carrinho
-  totalProdutos() {
-    return this.cartItems.length;
-  }
-
-  // Retorna o total do carrinho (soma dos preços)
-  totalValor() {
-    return this.cartItems.reduce((acc, p) => acc + p.preco, 0);
+  toggleModal() {
+    this.modalOpenSubject.next(!this.modalOpenSubject.value);
   }
 }

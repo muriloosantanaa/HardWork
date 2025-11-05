@@ -15,22 +15,35 @@
         <h3>{{ produto.nome }}</h3>
         <p>{{ produto.descricao }}</p>
         <span class="price">R$ {{ produto.preco | number:'1.2-2' }}</span>
-        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <button class="add-to-cart-btn" (click)="adicionarAoCarrinho(produto)">Adicionar ao Carrinho</button>
       </div>
     </div>
   </section>
 
-  <!-- Modal do carrinho permanece igual -->
-  <div id="cart-modal" class="modal">
+  <div class="css-modal" [class.show]="modalAberto">
     <div class="modal-content">
-      <span class="close-btn">&times;</span>
+      <span class="close-btn" (click)="toggleModal()">&times;</span>
       <h2>Seu Carrinho</h2>
-      <div id="cart-items"></div>
-      <div class="cart-total-container">
-        <span>Total:</span>
-        <span id="cart-total">R$ 0,00</span>
+      <div *ngIf="cartItems.length; else emptyCart">
+        <div class="cart-item" *ngFor="let item of cartItems">
+          <img [src]="item.imagem || 'assets/img/placeholder.png'" alt="{{ item.nome }}">
+          <div class="cart-item-info">
+            <h4>{{ item.nome }}</h4>
+            <p>R$ {{ item.preco | number:'1.2-2' }}</p>
+            <div class="cart-item-controls">
+              <button class="remove-item" (click)="removerDoCarrinho(item.id)">Remover</button>
+            </div>
+          </div>
+        </div>
+        <div class="cart-total-container">
+          <span>Total:</span>
+          <span>R$ {{ totalValor | number:'1.2-2' }}</span>
+        </div>
+        <a href="Sucesso.html" class="checkout-link">Finalizar Compra</a>
       </div>
-      <a href="Sucesso.html" class="checkout-link">Finalizar Compra</a>
+      <ng-template #emptyCart>
+        <p>O carrinho está vazio.</p>
+      </ng-template>
     </div>
   </div>
 </main>
