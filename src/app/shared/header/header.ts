@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +8,20 @@ import { Component } from '@angular/core';
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })
-export class Header {
-  constructor(private router: Router) {}
+export class Header implements OnInit {
+  totalProdutos = 0;
+
+  constructor(private router: Router, private cartService: CartService) {}
+
+  ngOnInit() {
+    this.cartService.cart$.subscribe(items => {
+      this.totalProdutos = items.length;
+    });
+  }
+
+  abrirCarrinho() {
+    this.cartService.abrirModal();
+  }
 
   logout() {
     this.router.navigate(['/login']);

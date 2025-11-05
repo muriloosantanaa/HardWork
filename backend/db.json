@@ -1,3 +1,11 @@
 {
-  "produtos": []
+  "produtos": [
+    {
+      "id": "281d",
+      "nome": "Whey",
+      "preco": 120,
+      "descricao": "Whey protein",
+      "imagem": "https://melhoresproteinas.com.br/wp-content/uploads/2025/08/melhor-whey-protein-para-emagrecer-guia.webp"
+    }
+  ]
 }

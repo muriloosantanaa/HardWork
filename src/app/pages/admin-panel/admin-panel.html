@@ -5,6 +5,7 @@
     <input type="text" placeholder="Nome do produto" [(ngModel)]="produtoSelecionado.nome" name="nome" required>
     <input type="number" placeholder="Preço" [(ngModel)]="produtoSelecionado.preco" name="preco" required>
     <input type="text" placeholder="Descrição" [(ngModel)]="produtoSelecionado.descricao" name="descricao" required>
+    <input type="text" placeholder="URL da Imagem" [(ngModel)]="produtoSelecionado.imagem" name="imagem">
 
     <button type="submit">{{ editando ? 'Atualizar' : 'Adicionar' }}</button>
     <button type="button" (click)="cancelarEdicao()" *ngIf="editando">Cancelar</button>

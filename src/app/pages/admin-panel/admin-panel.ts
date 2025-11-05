@@ -12,7 +12,9 @@ import { ProdutoService, Produto } from '../../services/produto.service';
 })
 export class AdminPanel implements OnInit {
   produtos: Produto[] = [];
-  produtoSelecionado: Produto = { nome: '', preco: 0, descricao: '' };
+
+  produtoSelecionado: Produto = { nome: '', preco: 0, descricao: '', imagem: '' };
+
   editando = false;
 
   constructor(private produtoService: ProdutoService) {}
@@ -56,6 +58,6 @@ export class AdminPanel implements OnInit {
 
   cancelarEdicao() {
     this.editando = false;
-    this.produtoSelecionado = { nome: '', preco: 0, descricao: '' };
+    this.produtoSelecionado = { nome: '', preco: 0, descricao: '', imagem: '' };
   }
 }

@@ -1,1 +1,36 @@
-<p>pagina em desenvolvimento</p>
+<main class="main-content">
+  <section id="banner" class="banner">
+    <div class="banner-content">
+      <h1>Alcance Seus Objetivos</h1>
+      <p>Encontre os melhores suplementos para sua saúde e performance.</p>
+      <a href="#produtos" class="cta-button">Ver Produtos</a>
+    </div>
+  </section>
+
+  <section id="produtos" class="products-section">
+    <h2>Nossos Produtos</h2>
+    <div class="products-grid">
+      <div class="product-card" *ngFor="let produto of produtos">
+        <img [src]="produto.imagem || 'assets/img/placeholder.png'" alt="{{ produto.nome }}">
+        <h3>{{ produto.nome }}</h3>
+        <p>{{ produto.descricao }}</p>
+        <span class="price">R$ {{ produto.preco | number:'1.2-2' }}</span>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal do carrinho permanece igual -->
+  <div id="cart-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Seu Carrinho</h2>
+      <div id="cart-items"></div>
+      <div class="cart-total-container">
+        <span>Total:</span>
+        <span id="cart-total">R$ 0,00</span>
+      </div>
+      <a href="Sucesso.html" class="checkout-link">Finalizar Compra</a>
+    </div>
+  </div>
+</main>
