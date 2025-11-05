@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { ProdutoService, Produto } from '../../services/produto.service';
 
 @Component({
   selector: 'app-produto-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgFor, NgIf],
   templateUrl: './produto-list.html',
   styleUrls: ['./produto-list.css']
 })
@@ -20,8 +20,8 @@ export class ProdutoList implements OnInit {
 
   carregarProdutos() {
     this.produtoService.listarProdutos().subscribe({
-      next: (data) => this.produtos = data,
-      error: (err) => console.error('Erro ao carregar produtos', err)
+      next: (data) => (this.produtos = data),
+      error: (err) => console.error('Erro ao carregar produtos', err),
     });
   }
 }
